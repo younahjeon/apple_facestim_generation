@@ -65,7 +65,7 @@ fps = 10;
 n_frames = t_to_animate * fps; 
 writeMovie = 1;
 
-v = VideoWriter('movie.avi', 'Uncompressed AVI');
+v = VideoWriter('movie.mp4','MPEG-4');
 open(v)
 load('BETA.mat')
 
