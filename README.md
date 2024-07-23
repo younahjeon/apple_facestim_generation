@@ -30,7 +30,9 @@ Basically you run a linear regression of vertices against the blendshapes:
 where **_Y_** is x,y,z coordinates of mesh vertices (number of frames x 3660) and **_X_** is blendshape coefficients (number of frames x 53). **_b_**, or beta (53 x 3660) tells how much a single blendshape influences/changes a single coordinate point.
 
 Usually you pick a ridge weight for which beta values become stable. The beta's provided here are generated with the ridge weight = 0.1.
-    
+
+Here is a result of applying the betas applied to a random face mesh.
+<img src = demo/BlendShapes.jpg height = "500">
 (If you want to know more about ridge regression: https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf) 
 
 
