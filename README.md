@@ -2,13 +2,13 @@
 Generate face stimuli using Apple ARKit 
 
 This project is composed of 5 steps: 
-1.  Get a 3D face mesh with vertices, triangular face indices, and blendshapes using the IPhone X's True-Depth camera and Apple ARKit
+1.  Get a 3D face mesh with vertices, triangular face indices, and blendshapes using the IPhone X's True-Depth camera and Apple ARKit. 
 2.  Find the linear mapping between the Apple vertices and blendshapes (LinRegressBeta.m)
     Or you can download BETA.mat
 3.  Segment face parts (eyes, a nose, and a mouth) or use the whole face from the Apple mesh.
     I've also provided an example FaceParts_example.mat.
 4.  Perform a "surgery" on a blank head with the obtained parts by stitching the parts to user-defined locations
-5.  Animate the final face using the mapping (âvertices) from Step 3
+5.  Animate the final face using the mapping from Step 3
 
 All codes were developed in MATLAB except for the IPhone app (written in Swift). 
 
@@ -18,6 +18,8 @@ Thanks to the IPhone X's face-capture ability and Apple's ARKit, we can obtain a
 To get the face mesh data, build an app **_GetFaceData.xcodeproj_** to your iphone X. XCode is an IDE for MacOS so if you are a windows user, you will need to get a virtual mac or rent a mac in the cloud. 
 
 **_GetFaceData.xcodeproj_** was adapted from [FaceCaptureX](http://prostheticknowledge.tumblr.com/post/167520295696/iphone-x-face-motion-capture-into-houdini-were) developed by Elisha Hung. Make sure to collect a movie (~1 minute) making various facial expressions (smile, surprised) and movements of the face (wink, furrowed brow) to activate different blendshapes.
+
+Use faceData_readLog.m to parse the text file from tha app.
 
 ## Step 2
 After you collect enough face mesh data i.e. collect various facial expressions that include all the blendshape coefficients, you can find the linear mapping between the 52 blendshapes and 1220 vertices. This mapping will be useful later to animate a random face with arbitrary blendshape values. Note that this is only possible because the indices of an Apple face mesh never change. 
@@ -40,7 +42,7 @@ Here, I provide the indices of each face part along with the boundary indices. A
 
 The reference points are colored in green.
 
-<img src = https://github.com/issalab/FaceGeneration/blob/master/demo/FaceParts_segmented.png height = "500">
+<img src = demo/FaceParts_segmented.png height = "500">
 
 
 ## Step 4 
