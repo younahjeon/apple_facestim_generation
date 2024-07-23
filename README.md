@@ -15,11 +15,11 @@ All codes were developed in MATLAB except for the IPhone app (written in Swift).
 ## Step 1
 Thanks to the IPhone X's face-capture ability and Apple's ARKit, we can obtain a basic 3D face mesh. This data include 1220 vertices (x,y,z coordinates), 2304 triangular faces, and 52 blendshapes. Blendshapes are specific facial features that can be used to create a diverse array of facial expressions. Their values range from 0.0 to 1.0. An example is *tongueOut*, which measures the extension of a tongue of the person facing the camera. The full list of blendshape locations can be found here (https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation).
 
-To get the face mesh data, build an app **_GetFaceData.xcodeproj_** to your iphone X. XCode is an IDE for MacOS so if you are a windows user, you will need to get a virtual mac or rent a mac in the cloud. 
+To get the face mesh data, build an app **_FaceDataRecorder.xcodeproj_** to your iphone. XCode is an IDE for MacOS so if you are a windows user, you will need to get a virtual mac or rent a mac in the cloud. 
 
-**_GetFaceData.xcodeproj_** was adapted from [FaceCaptureX](http://prostheticknowledge.tumblr.com/post/167520295696/iphone-x-face-motion-capture-into-houdini-were) developed by Elisha Hung. Make sure to collect a movie (~1 minute) making various facial expressions (smile, surprised) and movements of the face (wink, furrowed brow) to activate different blendshapes.
+**_FaceCaptureX.xcodeproj_** is a brainchild of [FaceCaptureX](http://prostheticknowledge.tumblr.com/post/167520295696/iphone-x-face-motion-capture-into-houdini-were) Elisha Hung. For Make sure to collect a movie (~1 minute) making various facial expressions (smile, surprised) and movements of the face (wink, furrowed brow) to activate different blendshapes. For our purpose, we will use record option not stream. 
 
-Use faceData_readLog.m to parse the text file from tha app.
+Use faceData_readLog.m to parse the text file from the app.
 
 ## Step 2
 After you collect enough face mesh data i.e. collect various facial expressions that include all the blendshape coefficients, you can find the linear mapping between the 52 blendshapes and 1220 vertices. This mapping will be useful later to animate a random face with arbitrary blendshape values. Note that this is only possible because the indices of an Apple face mesh never change. 
