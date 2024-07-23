@@ -42,7 +42,7 @@ Here, I provide the indices of each face part along with the boundary indices. A
 
 The reference points are colored in green.
 
-<img src = demo/FaceParts_segmented.png height = "500">
+<img src = demo/FaceParts_segmented.png height = "200">
 
 
 ## Step 4 
@@ -51,19 +51,28 @@ Stitching a part mesh to a blank head requires the following steps:
 2.  Define the location on the blank head where the reference point will be attached to
 3.  Bring the part towards the target location by minimizing the distance between the reference point and the target point
 3(a).  Minimize the distance between the boundary of the part and the blank head through the optimzation protocol
-4.  Remove the the blank head's vertices that are occluded by the part mesh
-5.  Stitch the face part's boundary vertices to the base head's unconnected vertices through Delaunay Triangulation
-6.  Smooth the stitched and neighboring areas
+<img src = demo/MeshSurgery_1.png height = "200">
+<img src = demo/MeshSurgery_2.png height = "200">
+
+5.  Remove the the blank head's vertices that are occluded by the part mesh
+6.  Stitch the face part's boundary vertices to the base head's unconnected vertices through Delaunay Triangulation
+7.  Smooth the stitched and neighboring areas
 
 3D transformation can be formulated as 4-by-4 matrix operations:
 https://www.tutorialspoint.com/computer_graphics/3d_transformation.htm
 
-Importantly, if you select an inappropriate target location (not on the blank head or the part is too big to stitch to the corresponding area in the blank head, the surgery will not work)
+Importantly, if you select an inappropriate target location (too far from the base head or the part is too big to stitch to the corresponding area in the blank head, the surgery will not work)
 
 
 ## Step 5
 Now you can animate the outcome of Step 4 using the **_b_** (betas) from Step 2. For example, if you want to create a smiling face, set blenshapes *mouthSmileL*, *mouthSmileR*, and *jawOpen* to 1, and calculate Y = Xb. 
 
 Consult StimGenExample.m for creating a face stimulus from scratch and animating to a new expression.
+
+Below are a couple of examples of stitching a part to the head.
+
+<img src = demo/NOSE_viewAngle= 0.gif height = "200">
+<img src = demo/EYER_viewAngle= 0.gif height = "200">
+
 
 
