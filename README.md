@@ -42,7 +42,7 @@ Here, I provide the indices of each face part along with the boundary indices. A
 
 The reference points are colored in green.
 
-<img src = demo/FaceParts_segmented.png height = "200">
+<img src = demo/FaceParts_segmented.png height = "500">
 
 
 ## Step 4 
@@ -51,8 +51,9 @@ Stitching a part mesh to a blank head requires the following steps:
 2.  Define the location on the blank head where the reference point will be attached to
 3.  Bring the part towards the target location by minimizing the distance between the reference point and the target point
 3(a).  Minimize the distance between the boundary of the part and the blank head through the optimzation protocol
-<img src = demo/MeshSurgery_1.png height = "200">
-<img src = demo/MeshSurgery_2.png height = "200">
+
+<img src = demo/MeshSurgery_1.png height = "500">
+<img src = demo/MeshSurgery_2.png height = "500">
 
 5.  Remove the the blank head's vertices that are occluded by the part mesh
 6.  Stitch the face part's boundary vertices to the base head's unconnected vertices through Delaunay Triangulation
@@ -71,8 +72,10 @@ Consult StimGenExample.m for creating a face stimulus from scratch and animating
 
 Below are a couple of examples of stitching a part to the head.
 
-<img src = demo/NOSE_viewAngle= 0.gif height = "200">
-<img src = demo/EYER_viewAngle= 0.gif height = "200">
+<img src = "demo/NOSE_viewAngle= 0.gif" height = "500">
+<img src = "demo/EYER_viewAngle= 0.gif" height = "500">
 
+An example movie of changing an expression of a newly generated face stimulus
 
+https://github.com/user-attachments/assets/527afdc1-2307-4c6b-8c7f-2c504a0c55fd
 
