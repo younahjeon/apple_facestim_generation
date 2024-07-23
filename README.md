@@ -1,4 +1,4 @@
-# apple_facestim_generationn
+# apple_facestim_generation
 Generate face stimuli using Apple ARKit 
 
 This project is composed of 5 steps: 
