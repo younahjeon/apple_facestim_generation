@@ -62,4 +62,6 @@ Importantly, if you select an inappropriate target location (not on the blank he
 ## Step 5
 Now you can animate the outcome of Step 4 using the **_b_** (betas) from Step 2. For example, if you want to create a smiling face, set blenshapes *mouthSmileL*, *mouthSmileR*, and *jawOpen* to 1, and calculate Y = Xb. 
 
+Consult StimGenExample.m for creating a face stimulus from scratch and animating to a new expression.
+
 
