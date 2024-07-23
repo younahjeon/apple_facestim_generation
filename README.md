@@ -2,13 +2,13 @@
 Generate face stimuli using Apple ARKit 
 
 This project is composed of 5 steps: 
-1.  Get a 3D face mesh with vertices, triangular face indices, and blendshapes using the IPhone X's True-Depth camera and Apple ARKit
+1.  Get a 3D face mesh with vertices, triangular face indices, and blendshapes using the IPhone X's True-Depth camera and Apple ARKit. 
 2.  Find the linear mapping between the Apple vertices and blendshapes (LinRegressBeta.m)
     Or you can download BETA.mat
 3.  Segment face parts (eyes, a nose, and a mouth) or use the whole face from the Apple mesh.
     I've also provided an example FaceParts_example.mat.
 4.  Perform a "surgery" on a blank head with the obtained parts by stitching the parts to user-defined locations
-5.  Animate the final face using the mapping (âvertices) from Step 3
+5.  Animate the final face using the mapping from Step 3
 
 All codes were developed in MATLAB except for the IPhone app (written in Swift). 
 
@@ -18,6 +18,8 @@ Thanks to the IPhone X's face-capture ability and Apple's ARKit, we can obtain a
 To get the face mesh data, build an app **_GetFaceData.xcodeproj_** to your iphone X. XCode is an IDE for MacOS so if you are a windows user, you will need to get a virtual mac or rent a mac in the cloud. 
 
 **_GetFaceData.xcodeproj_** was adapted from [FaceCaptureX](http://prostheticknowledge.tumblr.com/post/167520295696/iphone-x-face-motion-capture-into-houdini-were) developed by Elisha Hung. Make sure to collect a movie (~1 minute) making various facial expressions (smile, surprised) and movements of the face (wink, furrowed brow) to activate different blendshapes.
+
+Use faceData_readLog.m to parse the text file from tha app.
 
 ## Step 2
 After you collect enough face mesh data i.e. collect various facial expressions that include all the blendshape coefficients, you can find the linear mapping between the 52 blendshapes and 1220 vertices. This mapping will be useful later to animate a random face with arbitrary blendshape values. Note that this is only possible because the indices of an Apple face mesh never change. 
@@ -40,7 +42,7 @@ Here, I provide the indices of each face part along with the boundary indices. A
 
 The reference points are colored in green.
 
-<img src = https://github.com/issalab/FaceGeneration/blob/master/demo/FaceParts_segmented.png height = "500">
+<img src = demo/FaceParts_segmented.png height = "200">
 
 
 ## Step 4 
@@ -49,19 +51,28 @@ Stitching a part mesh to a blank head requires the following steps:
 2.  Define the location on the blank head where the reference point will be attached to
 3.  Bring the part towards the target location by minimizing the distance between the reference point and the target point
 3(a).  Minimize the distance between the boundary of the part and the blank head through the optimzation protocol
-4.  Remove the the blank head's vertices that are occluded by the part mesh
-5.  Stitch the face part's boundary vertices to the base head's unconnected vertices through Delaunay Triangulation
-6.  Smooth the stitched and neighboring areas
+<img src = demo/MeshSurgery_1.png height = "200">
+<img src = demo/MeshSurgery_2.png height = "200">
+
+5.  Remove the the blank head's vertices that are occluded by the part mesh
+6.  Stitch the face part's boundary vertices to the base head's unconnected vertices through Delaunay Triangulation
+7.  Smooth the stitched and neighboring areas
 
 3D transformation can be formulated as 4-by-4 matrix operations:
 https://www.tutorialspoint.com/computer_graphics/3d_transformation.htm
 
-Importantly, if you select an inappropriate target location (not on the blank head or the part is too big to stitch to the corresponding area in the blank head, the surgery will not work)
+Importantly, if you select an inappropriate target location (too far from the base head or the part is too big to stitch to the corresponding area in the blank head, the surgery will not work)
 
 
 ## Step 5
 Now you can animate the outcome of Step 4 using the **_b_** (betas) from Step 2. For example, if you want to create a smiling face, set blenshapes *mouthSmileL*, *mouthSmileR*, and *jawOpen* to 1, and calculate Y = Xb. 
 
 Consult StimGenExample.m for creating a face stimulus from scratch and animating to a new expression.
+
+Below are a couple of examples of stitching a part to the head.
+
+<img src = demo/NOSE_viewAngle= 0.gif height = "200">
+<img src = demo/EYER_viewAngle= 0.gif height = "200">
+
 
 
