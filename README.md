@@ -4,11 +4,11 @@ Generate face stimuli using Apple ARKit
 This project is composed of 5 steps: 
 1.  Get a 3D face mesh with vertices, triangular face indices, and blendshapes using the IPhone X's True-Depth camera and Apple ARKit. 
 2.  Find the linear mapping between the Apple vertices and blendshapes (LinRegressBeta.m)
-    Or you can download BETA.mat
+    Or you can download BETA.mat.
 3.  Segment face parts (eyes, a nose, and a mouth) or use the whole face from the Apple mesh.
-    I've also provided an example FaceParts_example.mat.
-4.  Perform a "surgery" on a blank head with the obtained parts by stitching the parts to user-defined locations
-5.  Animate the final face using the mapping from Step 3
+    I've also provided an example (FaceParts_example.mat).
+4.  Perform a "surgery" on a blank head with the obtained parts by stitching the parts to user-defined locations.
+5.  Animate the final face using the mapping from Step 3.
 
 All codes were developed in MATLAB except for the IPhone app (written in Swift). 
 
