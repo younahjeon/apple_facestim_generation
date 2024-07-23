@@ -1,6 +1,6 @@
 function partV = changeMeshbyEmotion(emotion,partV,partF)
 
-    load('BETA_sophie.mat')
+    load('BETA.mat')
 
     nVertices = 1220;
     if strcmp(emotion,'smile')

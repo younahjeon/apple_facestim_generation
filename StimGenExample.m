@@ -60,7 +60,7 @@ TR = triangulation(newMesh{1,t},newMesh{2,t}/max(newMesh{2,t},[],'all'));
 %%
 % animate the resulting face with arbitrary blendshapes
 
-t_to_animate = 3; % 3 seconds
+t_to_animate = 1; % 3 seconds
 fps = 10; 
 n_frames = t_to_animate * fps; 
 writeMovie = 1;
