@@ -17,7 +17,7 @@ Thanks to the IPhone X's face-capture ability and Apple's ARKit, we can obtain a
 
 To get the face mesh data, build an app **_FaceDataRecorder.xcodeproj_** to your iphone. XCode is an IDE for MacOS so if you are a windows user, you will need to get a virtual mac or rent a mac in the cloud. 
 
-**_FaceCaptureX.xcodeproj_** is a brainchild of [FaceCaptureX](http://prostheticknowledge.tumblr.com/post/167520295696/iphone-x-face-motion-capture-into-houdini-were) Elisha Hung. Make sure to collect a movie (~1 minute) making various facial expressions (smile, surprised) and movements of the face (wink, furrowed brow) to activate different blendshapes. For our purpose, we will use record option not stream. 
+**_FaceDataRecorder.xcodeproj_** is a brainchild of [FaceCaptureX](http://prostheticknowledge.tumblr.com/post/167520295696/iphone-x-face-motion-capture-into-houdini-were) Elisha Hung. Make sure to collect a movie (~1 minute) making various facial expressions (smile, surprised) and movements of the face (wink, furrowed brow) to activate different blendshapes. I've updated the code so that the text output contains camera projection matrix and imageresolution. After building the app, launch it, set to "Record", and click "Capture". 
 
 Use faceData_readLog.m to parse the text file from the app.
 
