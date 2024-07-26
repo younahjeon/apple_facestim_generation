@@ -39,3 +39,52 @@ Options = struct;
 I= imread('0000.jpg');
 load('TriangleIndices.mat')
 patcht(TriangleIndices', v, TriangleIndices',flip(pixelCoord,2),I, Options)
+
+%% add expression to a textured mesh
+
+newv = changeMeshbyEmotion('smile',v, TriangleIndices');
+
+figure;
+subplot(1,2,1);
+patcht(TriangleIndices', v, TriangleIndices',flip(pixelCoord,2),I, Options)
+cameraViewAngle = 10; % field of view (0 to 180) The greater the number, smaller objects will show more
+cameraTarget = [32 10.785 14.3812]; % how far your target is from the camera. determines the degree of visibility
+cameraPos = [0 0 0];
+set(gca,'CameraViewAngle',cameraViewAngle,'CameraTarget',cameraTarget,'CameraPosition',cameraPos);
+axis equal
+view (0,90)
+
+%h1 = camlight(45,25); lighting gouraud;
+%set(h1,'color',[.7 .7 .7]);
+%h3 = camlight('headlight'); lighting gouraud
+%set(h3,'color',[0.2 0.2 0.2]);
+%h2=camlight(-45,25); lighting gouraud
+%set(h2,'color',[0.7 0.7 0.7]);
+%material([.3 .8 .1 10 1]);
+set(gcf,'color','w');
+set(gcf,'menubar','none');
+axis off
+title('original')
+
+subplot(1,2,2);
+patcht(TriangleIndices', newv, TriangleIndices',flip(pixelCoord,2),I, Options)
+cameraViewAngle = 10; % field of view (0 to 180) The greater the number, smaller objects will show more
+cameraTarget = [32 10.785 14.3812]; % how far your target is from the camera. determines the degree of visibility
+cameraPos = [0 0 0];
+set(gca,'CameraViewAngle',cameraViewAngle,'CameraTarget',cameraTarget,'CameraPosition',cameraPos);
+axis equal
+view (0,90)
+
+%h1 = camlight(45,25); lighting gouraud;
+%set(h1,'color',[.7 .7 .7]);
+%h3 = camlight('headlight'); lighting gouraud
+%set(h3,'color',[0.2 0.2 0.2]);
+%h2=camlight(-45,25); lighting gouraud
+%set(h2,'color',[0.7 0.7 0.7]);
+%material([.3 .8 .1 10 1]);
+set(gcf,'color','w');
+set(gcf,'menubar','none');
+axis off
+title('original + smile Blendshapes')
+
+savefig('textured_mesh_expresison.png')
