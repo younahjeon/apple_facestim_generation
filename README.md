@@ -3,10 +3,9 @@ Generate face stimuli using Apple ARKit
 
 This project is composed of 5 steps: 
 1.  Get a 3D face mesh with vertices, triangular face indices, and blendshapes using the IPhone X's True-Depth camera and Apple ARKit. 
-2.  Find the linear mapping between the Apple vertices and blendshapes (LinRegressBeta.m)
-    Or you can download BETA.mat.
-3.  Segment face parts (eyes, a nose, and a mouth) or use the whole face from the Apple mesh.
-    I've also provided an example (FaceParts_example.mat).
+2.  Find the linear mapping between the Apple vertices and blendshapes (*LinRegressBeta.m*)
+    Or you can download *BETA.mat*.
+3.  Segment face parts (eyes, a nose, and a mouth) or use the whole face from the Apple mesh. *FaceParts_example.mat* contains vertices, mesh triangle indices, outline indices, and reference points for each face part and the whole face from an example Apple mesh. 
 4.  Perform a "surgery" on a blank head with the obtained parts by stitching the parts to user-defined locations.
 5.  Animate the final face using the mapping from Step 3.
 
@@ -17,7 +16,7 @@ Thanks to the IPhone X's face-capture ability and Apple's ARKit, we can obtain a
 
 To get the face mesh data, build an app **_FaceDataRecorder.xcodeproj_** to your iphone. XCode is an IDE for MacOS so if you are a windows user, you will need to get a virtual mac or rent a mac in the cloud. 
 
-**_FaceDataRecorder.xcodeproj_** is a brainchild of [FaceCaptureX](http://prostheticknowledge.tumblr.com/post/167520295696/iphone-x-face-motion-capture-into-houdini-were) Elisha Hung. Make sure to collect a movie (~1 minute) making various facial expressions (smile, surprised) and movements of the face (wink, furrowed brow) to activate different blendshapes. I've updated the code so that the text output contains camera projection matrix and imageresolution. After building the app, launch it, set to "Record", and click "Capture". 
+**_FaceDataRecorder.xcodeproj_** is a brainchild of [FaceCaptureX](http://prostheticknowledge.tumblr.com/post/167520295696/iphone-x-face-motion-capture-into-houdini-were) Elisha Hung. Make sure to collect a movie (~1 minute) making various facial expressions (smile, surprised) and movements of the face (wink, furrowed brow) to activate different blendshapes. I've updated the code so that the text output contains camera projection matrix and image resolution, which are used for mapping texture later. After building the app, launch it, set to "Record", and click "Capture". 
 
 Use faceData_readLog.m to parse the text file from the app.
 
@@ -66,18 +65,20 @@ https://www.tutorialspoint.com/computer_graphics/3d_transformation.htm
 
 Importantly, if you select an inappropriate target location (too far from the base head or the part is too big to stitch to the corresponding area in the blank head, the surgery will not work)
 
-
-## Step 5
-Now you can animate the outcome of Step 4 using the **_b_** (betas) from Step 2. For example, if you want to create a smiling face, set blenshapes *mouthSmileL*, *mouthSmileR*, and *jawOpen* to 1, and calculate Y = Xb. 
-
-Consult StimGenExample.m for creating a face stimulus from scratch and animating to a new expression.
-
-Below are a couple of examples of stitching a part to the head.
+Below are a couple of examples of stitching a part to the head in different locations.
 
 <img src = "demo/NOSE_viewAngle= 0.gif" height = "500">
 <img src = "demo/EYER_viewAngle= 0.gif" height = "500">
 
-An example movie of changing an expression of a newly generated face stimulus
+## Step 5
+Now you can animate the outcome of Step 4 using the **_b_** (betas) from Step 2. For example, if you want to create a face with closed eyes, set blendshapes *eyeBlinkL* and *eyeBlinkR* to 1, and calculate Y = Xb. 
+
+Consult StimGenExample.m for creating a face stimulus from scratch and animating it to a new expression.
 
 https://github.com/user-attachments/assets/527afdc1-2307-4c6b-8c7f-2c504a0c55fd
+
+## Step 6
+You can also add texture to the face mesh using the photos captured by the app. Make sure that the photo and the mesh information are from the same frame. See Texturemapping.m. You can do Step 5 with a textured mesh as well. 
+
+<img src = "demo/textured_mesh_expresison.png" height = "500">
 
