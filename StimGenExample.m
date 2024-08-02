@@ -1,6 +1,41 @@
 % Example face generation
 % All figures are saved in the figures folder.
 
+
+%% Generate FaceParts mat file from Apple text file
+FaceParts = struct; 
+datafile = ''; % path to the textfile from FaceCaptureX app 
+frame_to_use = 1; % which frame to use? you might want to use a frame where the face has a neutral expression
+parsed_data = faceData_readLog(datafile);
+
+load('FacePartsInd.mat');
+FaceParts_example = load('FaceParts_example.mat');
+load('TriangleIndices.mat');
+fields= fieldnames(FacePartsInd);
+for i = 1:length(fields)
+    cell_to_save = cell(1,4);
+
+    % first cell is the triangular faces corresponding to the specific face
+    % part
+    cell_to_save{1} = findRows(TriangleIndices', FacePartsInd.(fields{i}),'or+');
+   
+    % second cell is the actual vertex coordinates
+    cell_to_save{2}= parsed_data.vertices{frame_to_use}(FacePartsInd.(fields{i}),:);
+
+    % third cell is vertices that compose the boundary of the part
+    cell_to_save{3} = FaceParts_example.FaceParts.(fields{i}){3};
+
+    % fourth cell is reference point
+    cell_to_save{4} = FaceParts_example.FaceParts.(fields{i}){4};
+
+    FaceParts.(fields{i}) = cell_to_save;
+end
+
+id_string = ''; % 
+save(strcat('FaceParts_',id_string), 'FaceParts');
+
+%%
+
 % LOAD PART MESH AND BLANK HEAD
 % Load FaceParts_elias, which is a structure that contains information
 % about different face parts of sophie 
