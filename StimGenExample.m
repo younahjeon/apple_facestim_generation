@@ -37,7 +37,7 @@ save(strcat('FaceParts_',id_string), 'FaceParts');
 %%
 
 % LOAD PART MESH AND BLANK HEAD
-% Load FaceParts_elias, which is a structure that contains information
+% Load FaceParts_example, which is a structure that contains information
 % about different face parts of sophie 
 % (1) triangular face indices, (2) coordinates,
 % (3) indices of the outline of the part, 
@@ -45,7 +45,7 @@ save(strcat('FaceParts_',id_string), 'FaceParts');
 
 global targetCoord baseF baseV partV partF partB refInd baseTR baseVN baseVA baseFN partIndices 
 baseMesh = 'PotatoHead';
-id_string = 'example'; 
+id_string = 'example'; % you can change this to any id_string you want to read
 part_string = 'ALLs'; % all parts but smaller 
 emotion ='';
 scale = 0.9;
